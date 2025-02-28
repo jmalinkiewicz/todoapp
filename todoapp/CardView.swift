@@ -11,11 +11,15 @@ struct CardView: View {
     let task: Task
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(task.title)
-                .font(.system(.title3))
-                .bold()
-            Text(task.description)
+        HStack(spacing: 20) {
+            Image(systemName: task.completed ? "checkmark" : "circle")
+                .foregroundStyle(.blue)
+            VStack(alignment: .leading) {
+                Text(task.title)
+                    .font(.system(.title3))
+                    .bold()
+                Text(task.description)
+            }
         }
     }
 }

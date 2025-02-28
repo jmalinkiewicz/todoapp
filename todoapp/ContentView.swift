@@ -19,13 +19,18 @@ struct ContentView: View {
                         CardView(task: task)
                     }
                     .swipeActions(edge: .trailing) {
+                        Button {
+                            viewModel.toggleTaskCompletion(task)
+                        } label: {
+                            Image(systemName: task.completed ? "checkmark.circle.badge.xmark.fill" : "checkmark.circle.fill")
+                        }
+                        .tint(task.completed ? .yellow : .green)
                         Button(role: .destructive) {
                             viewModel.removeTask(task)
                         } label: {
                             Image(systemName: "trash")
                         }
                     }
-
                 }            }
             .navigationTitle("To do")
             .toolbar {

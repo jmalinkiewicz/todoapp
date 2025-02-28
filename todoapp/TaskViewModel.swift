@@ -40,6 +40,16 @@ import SwiftUI
         tasks.removeAll()
     }
     
+    func toggleTaskCompletion(_ task: Task) {
+        if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+            toggleTaskCompletion(at: index)
+        }
+    }
+    
+    func toggleTaskCompletion(at index: Int) {
+        tasks[index].completed.toggle()
+    }
+    
     private func saveTasks() {
         if let encoded = try? JSONEncoder().encode(tasks) {
             UserDefaults.standard.set(encoded, forKey: "TodoTasks")
