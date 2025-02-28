@@ -6,13 +6,9 @@
 //
 
 import Foundation
-
-struct Tasks {
-    var tasks = [Task]()
-    
-    struct Task {
-        var id: UUID
-        var title: String
-        var description: String
-    }
+ 
+struct Task {
+    var id: UUID
+    var title: String
+    var description: String
 }
