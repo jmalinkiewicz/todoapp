@@ -15,9 +15,21 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.tasks) { task in
-                    Text(task.title)
-                }
-            }
+                    VStack(alignment: .leading) {
+                        Text(task.title)
+                            .font(.system(.title3))
+                            .bold()
+                        Text(task.description)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            viewModel.removeTask(task)
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
+
+                }            }
             .navigationTitle("To do")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

@@ -30,6 +30,12 @@ import SwiftUI
         tasks.remove(at: index)
     }
     
+    func removeTask(_ task: Task) {
+        if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+            removeTask(at: index)
+        }
+    }
+    
     func removeAllTasks() {
         tasks.removeAll()
     }
