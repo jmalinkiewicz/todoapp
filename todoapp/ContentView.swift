@@ -15,11 +15,8 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.tasks) { task in
-                    VStack(alignment: .leading) {
-                        Text(task.title)
-                            .font(.system(.title3))
-                            .bold()
-                        Text(task.description)
+                    NavigationLink(destination: DetailView(task: task)) {
+                        CardView(task: task)
                     }
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
