@@ -8,7 +8,15 @@
 import SwiftUI
 
 @Observable class TaskViewModel {
-   var tasks = [Task]()
+    var tasks = [Task]() {
+        didSet {
+            saveTasks()
+        }
+    }
+    
+    init() {
+        loadTasks()
+    }
     
     func addTask(_ task: Task) {
         tasks.append(task)
@@ -24,6 +32,20 @@ import SwiftUI
     
     func removeAllTasks() {
         tasks.removeAll()
+    }
+    
+    private func saveTasks() {
+        if let encoded = try? JSONEncoder().encode(tasks) {
+            UserDefaults.standard.set(encoded, forKey: "TodoTasks")
+        }
+    }
+
+    private func loadTasks() {
+        if let savedTasks = UserDefaults.standard.data(forKey: "TodoTasks") {
+            if let decodedItems = try? JSONDecoder().decode([Task].self, from: savedTasks) {
+                tasks = decodedItems
+            }
+        }
     }
 }
 

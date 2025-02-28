@@ -7,8 +7,14 @@
 
 import Foundation
  
-struct Task: Identifiable {
-    let id = UUID()
+struct Task: Identifiable, Codable {
+    var id: UUID
     var title: String
     var description: String
+    
+    init(title: String, description: String) {
+        id = UUID()
+        self.title = title
+        self.description = description
+    }
 }
