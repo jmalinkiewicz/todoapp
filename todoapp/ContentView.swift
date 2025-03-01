@@ -17,6 +17,19 @@ struct ContentView: View {
                 ForEach(viewModel.tasks) { task in
                     NavigationLink(destination: DetailView(task: task)) {
                         CardView(task: task)
+                            .contextMenu {
+                                Button {
+                                    viewModel.toggleTaskCompletion(task)
+                                } label: {
+                                    Label(task.completed ? "Mark undone" : "Mark done", systemImage: task.completed ? "checkmark.circle.badge.xmark" : "checkmark.circle")
+                                }
+
+                                Button(role: .destructive) {
+                                    viewModel.removeTask(task)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                     }
                     .swipeActions(edge: .trailing) {
                         Button {
