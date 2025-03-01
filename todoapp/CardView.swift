@@ -24,6 +24,7 @@ struct CardView: View {
                     .font(.system(.title3))
                     .bold()
                 Text(task.description)
+                    .lineLimit(1)
             }
         }
     }
