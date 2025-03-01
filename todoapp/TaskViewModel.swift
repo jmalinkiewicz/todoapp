@@ -60,6 +60,13 @@ import SwiftUI
         tasks[index].pinned.toggle()
     }
     
+    func updateTask(_ task: Task, title: String, description: String) {
+        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+            tasks[index].title = title
+            tasks[index].description = description
+        }
+    }
+    
     private func saveTasks() {
         if let encoded = try? JSONEncoder().encode(tasks) {
             UserDefaults.standard.set(encoded, forKey: "TodoTasks")
