@@ -23,8 +23,15 @@ struct CardView: View {
                 Text(task.title)
                     .font(.system(.title3))
                     .bold()
-                Text(task.description)
-                    .lineLimit(1)
+                HStack {
+                    Text(task.description)
+                        .lineLimit(1)
+                    Spacer()
+                    if task.pinned {
+                        Image(systemName: "pin.fill")
+                            .foregroundStyle(.blue)
+                    }
+                }
             }
         }
     }

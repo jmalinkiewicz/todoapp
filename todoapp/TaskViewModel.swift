@@ -50,6 +50,16 @@ import SwiftUI
         tasks[index].completed.toggle()
     }
     
+    func toggleTaskPin(_ task: Task) {
+        if let index = tasks.firstIndex(where: {$0.id == task.id}) {
+            toggleTaskPin(at: index)
+        }
+    }
+    
+    func toggleTaskPin(at index: Int) {
+        tasks[index].pinned.toggle()
+    }
+    
     private func saveTasks() {
         if let encoded = try? JSONEncoder().encode(tasks) {
             UserDefaults.standard.set(encoded, forKey: "TodoTasks")
