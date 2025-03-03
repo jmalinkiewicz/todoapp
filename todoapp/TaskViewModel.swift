@@ -23,6 +23,11 @@ import SwiftUI
     }
     
     func addTask(title: String, description: String) {
+        guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            return
+        }
+        
         addTask(Task(title: title, description: description))
     }
     
